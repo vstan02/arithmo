@@ -20,11 +20,22 @@
 #ifndef ARITHMO_H
 #define ARITHMO_H
 
-typedef struct arithmo arithmo_t;
+typedef struct artm_calc artm_calc_t;
+typedef struct artm_result artm_result_t;
+typedef enum artm_status artm_status_t;
 
-extern arithmo_t* arithmo_new(void);
-extern void arithmo_free(arithmo_t* target);
+enum artm_status {
+    ARTM_SUCCESS
+};
 
-extern double arithmo_process(arithmo_t* target, const char* expression);
+struct artm_result {
+    artm_status_t status;
+    double value;
+};
+
+extern artm_calc_t* artm_calc_init(void);
+extern void artm_calc_free(artm_calc_t* calc);
+
+extern artm_result_t artm_calc_process(artm_calc_t* calc, const char* expression);
 
 #endif // ARITHMO_H
