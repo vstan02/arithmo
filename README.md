@@ -15,7 +15,7 @@
 - [Contributing](#contributing)
 
 ## Usage
-Here is an example of usage (for the full version see [demo/main.c](https://github.com/vstan02/conix/blob/master/demo/main.c) file):
+Here is an example of usage (for the full version see [example/main.c](https://github.com/vstan02/arithmo/blob/master/example/main.c) file):
 ```c
 const char* expression = "(23 - 4) * 3";
 
