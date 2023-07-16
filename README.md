@@ -43,7 +43,7 @@ switch (result.status) {
 artm_calc_free(calc);
 ```
 
-After project building you can run this example as you can see [here](#running-demo).
+After project building you can run this example as you can see [here](#running-example).
 
 ## Building and Installation
 
