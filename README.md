@@ -5,19 +5,51 @@
 [![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 ## Contents
+- [Usage](#usage)
 - [Building and Installation](#building-and-installation)
     - [Dependencies](#dependencies)
     - [Building the project](#building-the-project)
-    - [Running tests](#running-tests)
+    - [Running example](#running-example)
     - [Installing](#installing)
 - [License](#license)
 - [Contributing](#contributing)
+
+## Usage
+Here is an example of usage (for the full version see [demo/main.c](https://github.com/vstan02/conix/blob/master/demo/main.c) file):
+```c
+const char* expression = "(23 - 4) * 3";
+
+// Creating an new arithmo instance:
+artm_calc_t* calc = artm_calc_init(5); // 5 is the approximate number of variables that will be used
+
+// Processing a mathematical expression:
+artm_result_t result = artm_calc_process(calc, expression);
+switch (result.status) {
+  case ARTM_NULL_CALC:
+    return printf("[ERROR] NULL_CALC\n");
+  case ARTM_NULL_EXPR:
+    return printf("[ERROR] NULL_EXPR\n");
+  case ARTM_ALLOC_ERR:
+    return printf("[ERROR] ALLOC_ERR\n");
+  case ARTM_INV_TOKEN:
+    return printf("[ERROR] INV_TOKEN\n");
+  case ARTM_UNDEF_VAR:
+    return printf("[ERROR] UNDEF_VAR\n");
+  case ARTM_SUCCESS:
+    return printf("[SUCCESS] %s = %g\n", expression, result.as.value);
+}
+
+// Destroying the instance:
+artm_calc_free(calc);
+```
+
+After project building you can run this example as you can see [here](#running-demo).
 
 ## Building and Installation
 
 ### Dependencies
 - C compiler (gcc, clang, etc...)
-- cmake (>= 3.16)
+- cmake (>= 3.17)
 
 These packages can usually be installed through your distributions package manager.
 
@@ -36,6 +68,11 @@ cmake ..
 Once `cmake` is done generating makefiles, we can build the library by running `make` inside our build directory:
 ```
 make
+```
+
+### Running example
+```
+./example
 ```
 
 ### Installing
