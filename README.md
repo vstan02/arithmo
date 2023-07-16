@@ -1,7 +1,7 @@
 # Arithmo
 > A fast and simple-to-use library for math expressions processing
 
-[![Version: v0.1.0](https://img.shields.io/badge/version-v0.0.0-blue)](https://vstan02.github.io/arithmo)
+[![Version: v0.1.0](https://img.shields.io/badge/version-v0.1.0-blue)](https://vstan02.github.io/arithmo)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 ## Contents
