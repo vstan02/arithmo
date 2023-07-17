@@ -100,7 +100,7 @@ extern void artm_calc_free(artm_calc_t* calc) {
   }
 }
 
-extern artm_result_t artm_calc_process(artm_calc_t* calc, const char* expression) {
+extern artm_result_t artm_calc_eval(artm_calc_t* calc, const char* expression) {
   if (calc == NULL) {
     return ARTM_ERROR(ARTM_NULL_CALC, (token_t) { 0 });
   }
@@ -121,6 +121,15 @@ extern artm_result_t artm_calc_process(artm_calc_t* calc, const char* expression
     default:
       return parse_expr(calc);
   }
+}
+
+extern double artm_calc_cbk_eval(artm_calc_t* calc, const char* expression, artm_cbk_t callback) {
+  artm_result_t result = artm_calc_eval(calc, expression);
+  if (result.status == ARTM_SUCCESS)
+    return result.as.value;
+
+  callback.target(&result, callback.payload);
+  return 0;
 }
 
 static artm_result_t parse_decl(artm_calc_t* calc) {

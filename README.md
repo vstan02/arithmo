@@ -1,7 +1,7 @@
 # Arithmo
 > A fast and simple-to-use library for math expressions processing
 
-[![Version: v0.1.0](https://img.shields.io/badge/version-v0.1.0-blue)](https://vstan02.github.io/arithmo)
+[![Version: v1.0.0](https://img.shields.io/badge/version-v1.0.0-blue)](https://vstan02.github.io/arithmo)
 [![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 ## Contents
@@ -23,7 +23,7 @@ const char* expression = "(23 - 4) * 3";
 artm_calc_t* calc = artm_calc_init(5); // 5 is the approximate number of variables that will be used
 
 // Processing a mathematical expression:
-artm_result_t result = artm_calc_process(calc, expression);
+artm_result_t result = artm_calc_eval(calc, expression);
 
 // Saving the token to see exactly where the error is in the expression:
 const artm_token_t* token = &result.as.token;

@@ -22,9 +22,13 @@
 
 #include <stddef.h>
 
+#define ARTM_CBK(_target_, _payload_) \
+  ((artm_cbk_t) { .target = (_target_), .payload = (_payload_) })
+
 typedef struct artm_calc artm_calc_t;
 typedef struct artm_result artm_result_t;
 typedef struct artm_token artm_token_t;
+typedef struct artm_cbk artm_cbk_t;
 
 typedef enum {
   ARTM_SUCCESS,
@@ -48,6 +52,11 @@ struct artm_result {
   } as;
 };
 
+struct artm_cbk {
+  void (*target)(const artm_result_t*, void*);
+  void* payload;
+};
+
 /**
  * @brief Initializes an Arithmo Interpreter object
  * @param decl_table_size The approximate number of variables that will be used
@@ -66,8 +75,17 @@ extern void artm_calc_free(artm_calc_t* calc);
  * @brief Evaluates the given mathematical expression
  * @param calc An Arithmo Interpreter object
  * @param expression The mathematical expression
- * @return The evaluation result
+ * @return The evaluation result structure
  */
-extern artm_result_t artm_calc_process(artm_calc_t* calc, const char* expression);
+extern artm_result_t artm_calc_eval(artm_calc_t* calc, const char* expression);
+
+/**
+ * @brief Evaluates the given mathematical expression
+ * @param calc An Arithmo Interpreter object
+ * @param expression The mathematical expression
+ * @param cbk The callback that is called in case of an error
+ * @return The evaluation result value
+ */
+extern double artm_calc_cbk_eval(artm_calc_t* calc, const char* expression, artm_cbk_t cbk);
 
 #endif // ARITHMO_H
