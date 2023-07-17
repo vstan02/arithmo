@@ -48,9 +48,26 @@ struct artm_result {
   } as;
 };
 
+/**
+ * @brief Initializes an Arithmo Interpreter object
+ * @param decl_table_size The approximate number of variables that will be used
+ * @return The Arithmo Interpreter object
+ */
 extern artm_calc_t* artm_calc_init(size_t decl_table_size);
+
+/**
+ * @brief Deallocates the memory previously allocated by a call to artm_calc_init
+ * @param calc An Arithmo Interpreter object
+ * @return Void
+ */
 extern void artm_calc_free(artm_calc_t* calc);
 
+/**
+ * @brief Evaluates the given mathematical expression
+ * @param calc An Arithmo Interpreter object
+ * @param expression The mathematical expression
+ * @return The evaluation result
+ */
 extern artm_result_t artm_calc_process(artm_calc_t* calc, const char* expression);
 
 #endif // ARITHMO_H
