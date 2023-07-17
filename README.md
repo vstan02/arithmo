@@ -24,6 +24,10 @@ artm_calc_t* calc = artm_calc_init(5); // 5 is the approximate number of variabl
 
 // Processing a mathematical expression:
 artm_result_t result = artm_calc_process(calc, expression);
+
+// Saving the token to see exactly where the error is in the expression:
+const artm_token_t* token = &result.as.token;
+
 switch (result.status) {
   case ARTM_NULL_CALC:
     return printf("[ERROR] NULL_CALC\n");
@@ -32,9 +36,9 @@ switch (result.status) {
   case ARTM_ALLOC_ERR:
     return printf("[ERROR] ALLOC_ERR\n");
   case ARTM_INV_TOKEN:
-    return printf("[ERROR] INV_TOKEN\n");
+    return printf("[ERROR] INV_TOKEN -> '%.*s'\n", (int) token->size, token.target);
   case ARTM_UNDEF_VAR:
-    return printf("[ERROR] UNDEF_VAR\n");
+    return printf("[ERROR] UNDEF_VAR -> '%.*s'\n", (int) token->size, token.target);
   case ARTM_SUCCESS:
     return printf("[SUCCESS] %s = %g\n", expression, result.as.value);
 }
