@@ -49,6 +49,8 @@ artm_calc_free(calc);
 
 After project building you can run this example as you can see [here](#running-example).
 
+Also, you can see [xcalc](https://vstan02.github.io/xcalc) - an real example of using Arithmo.
+
 ## Building and Installation
 
 ### Dependencies
